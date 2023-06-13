@@ -1,0 +1,8 @@
+name: MCWar
+version: '${project.version}'
+main: kr.vanilage.mcwar.MCWar
+api-version: 1.19
+authors: [MaIcer]
+
+commands:
+  팀생성:
