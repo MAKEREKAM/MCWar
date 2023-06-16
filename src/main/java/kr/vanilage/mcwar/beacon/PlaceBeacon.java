@@ -33,7 +33,9 @@ public class PlaceBeacon implements Listener {
                                     MCWar.getPlugin(MCWar.class).saveConfig();
 
                                     for (String k : MCWar.config.getConfigurationSection("teams." + i + ".member").getKeys(false)) {
-                                        if (Bukkit.getPlayer(UUID.fromString(k)) != null) { Bukkit.getPlayer(UUID.fromString(k)).sendMessage(ChatColor.GREEN + "신호기가 설치되었습니다."); }
+                                        if (Bukkit.getPlayer(UUID.fromString(k)) != null) {
+                                            Bukkit.getPlayer(UUID.fromString(k)).sendMessage(ChatColor.GREEN + "신호기가 설치되었습니다.");
+                                        }
                                     }
 
                                     return;

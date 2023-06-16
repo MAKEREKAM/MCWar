@@ -2,6 +2,7 @@ package kr.vanilage.mcwar;
 
 import kr.vanilage.mcwar.beacon.PlaceBeacon;
 import kr.vanilage.mcwar.cmd.InitTeam;
+import kr.vanilage.mcwar.cmd.JoinTeam;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -22,6 +23,8 @@ public final class MCWar extends JavaPlugin {
 
         this.getCommand("팀생성").setExecutor(new InitTeam());
         this.getCommand("팀생성").setTabCompleter(null);
+        this.getCommand("팀가입").setExecutor(new JoinTeam());
+        this.getCommand("팀가입").setTabCompleter(null);
 
         Bukkit.getPluginManager().registerEvents(new PlaceBeacon(), this);
 
