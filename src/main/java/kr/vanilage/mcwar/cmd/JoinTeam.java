@@ -35,6 +35,9 @@ public class JoinTeam implements CommandExecutor {
                                 for (String j : MCWar.config.getConfigurationSection("teams." + i + ".member").getKeys(false)) {
                                     if (Bukkit.getPlayer(UUID.fromString(j)) != null) {
                                         Bukkit.getPlayer(UUID.fromString(j)).sendMessage(ChatColor.GREEN + p.getName() + "님이 팀에 합류했습니다.");
+                                        p.setPlayerListName(p.getName() + " [" + i + "]");
+                                        p.setDisplayName(p.getName() + " [" + i + "]");
+                                        p.setCustomName(p.getName() + " [" + i + "]");
                                         return false;
                                     }
                                 }

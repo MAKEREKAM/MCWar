@@ -48,6 +48,9 @@ public class InitTeam implements CommandExecutor {
                 MCWar.config.set("beacons." + String.format("%d 90 %d", p.getLocation().getBlockX(), p.getLocation().getBlockZ()) + ".team", args[0]);
                 MCWar.getPlugin(MCWar.class).saveConfig();
                 Bukkit.broadcastMessage(ChatColor.GREEN + args[0] + " 팀이 생성되었습니다.");
+                p.setPlayerListName(p.getName() + " [" + args[0] + "]");
+                p.setDisplayName(p.getName() + " [" + args[0] + "]");
+                p.setCustomName(p.getName() + " [" + args[0] + "]");
             }
 
             else {
