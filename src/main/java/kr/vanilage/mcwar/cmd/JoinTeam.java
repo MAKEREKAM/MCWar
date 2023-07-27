@@ -38,6 +38,7 @@ public class JoinTeam implements CommandExecutor {
                                         p.setPlayerListName(p.getName() + " [" + i + "]");
                                         p.setDisplayName(p.getName() + " [" + i + "]");
                                         p.setCustomName(p.getName() + " [" + i + "]");
+                                        MCWar.config.set("teams." + i + ".member." + p.getUniqueId(), 0);
                                         return false;
                                     }
                                 }

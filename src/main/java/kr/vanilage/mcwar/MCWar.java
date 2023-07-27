@@ -70,6 +70,7 @@ public final class MCWar extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new UpgradeSkill(), this);
         Bukkit.getPluginManager().registerEvents(new JoinTabName(), this);
         Bukkit.getPluginManager().registerEvents(new ElytraPatch(), this);
+        Bukkit.getPluginManager().registerEvents(new Respawn(), this);
 
         Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
             @Override
@@ -82,7 +83,7 @@ public final class MCWar extends JavaPlugin {
                             int y = Integer.parseInt(loc[1]);
                             int z = Integer.parseInt(loc[2]);
 
-                            Bukkit.getWorld("world").spawnParticle(Particle.GLOW_SQUID_INK, new Location(Bukkit.getWorld("world"), x + 0.5, y, z + 0.5), 2500, 0, 100, 0, 0, null, true);
+                            Bukkit.getWorld("world").spawnParticle(Particle.GLOW_SQUID_INK, new Location(Bukkit.getWorld("world"), x + 0.5, y, z + 0.5), 700, 0, 100, 0, 0, null, true);
                         }
                     }
                 }
