@@ -69,6 +69,7 @@ public final class MCWar extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new Upgrade(), this);
         Bukkit.getPluginManager().registerEvents(new UpgradeSkill(), this);
         Bukkit.getPluginManager().registerEvents(new JoinTabName(), this);
+        Bukkit.getPluginManager().registerEvents(new ElytraPatch(), this);
 
         Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
             @Override
