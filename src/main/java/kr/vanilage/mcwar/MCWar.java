@@ -47,6 +47,16 @@ public final class MCWar extends JavaPlugin {
         maxHealthRecipe.setIngredient('T', Material.TOTEM_OF_UNDYING);
         Bukkit.addRecipe(maxHealthRecipe);
 
+        ItemStack upgrade = new ItemStack(Material.LAPIS_LAZULI);
+        ItemMeta meta = upgrade.getItemMeta();
+        meta.setDisplayName(ChatColor.YELLOW + "강화된 청금석");
+        upgrade.setItemMeta(meta);
+        ShapelessRecipe upgradeRecipe = new ShapelessRecipe(new NamespacedKey(this, "upgrade"), upgrade);
+        upgradeRecipe.addIngredient(Material.LAPIS_LAZULI);
+        upgradeRecipe.addIngredient(Material.AMETHYST_SHARD);
+        upgradeRecipe.addIngredient(Material.AMETHYST_SHARD);
+        Bukkit.addRecipe(upgradeRecipe);
+
         this.getCommand("팀생성").setExecutor(new InitTeam());
         this.getCommand("팀생성").setTabCompleter(new TabCompleter() {
             @Override
@@ -65,12 +75,14 @@ public final class MCWar extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlaceBeacon(), this);
         Bukkit.getPluginManager().registerEvents(new BreakBeacon(), this);
         Bukkit.getPluginManager().registerEvents(new InfoBeacon(), this);
-        Bukkit.getPluginManager().registerEvents(new KillHP(), this);
+        Bukkit.getPluginManager().registerEvents(new KillEvent(), this);
         Bukkit.getPluginManager().registerEvents(new Upgrade(), this);
         Bukkit.getPluginManager().registerEvents(new UpgradeSkill(), this);
         Bukkit.getPluginManager().registerEvents(new JoinTabName(), this);
         Bukkit.getPluginManager().registerEvents(new ElytraPatch(), this);
         Bukkit.getPluginManager().registerEvents(new Respawn(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockEnchant(), this);
+        Bukkit.getPluginManager().registerEvents(new FSkill(), this);
 
         Bukkit.getScheduler().runTaskTimer(this, new Runnable() {
             @Override
@@ -83,7 +95,7 @@ public final class MCWar extends JavaPlugin {
                             int y = Integer.parseInt(loc[1]);
                             int z = Integer.parseInt(loc[2]);
 
-                            Bukkit.getWorld("world").spawnParticle(Particle.GLOW_SQUID_INK, new Location(Bukkit.getWorld("world"), x + 0.5, y, z + 0.5), 700, 0, 100, 0, 0, null, true);
+                            Bukkit.getWorld("world").spawnParticle(Particle.GLOW_SQUID_INK, new Location(Bukkit.getWorld("world"), x + 0.5, y, z + 0.5), 500, 0, 100, 0, 0, null, true);
                         }
                     }
                 }

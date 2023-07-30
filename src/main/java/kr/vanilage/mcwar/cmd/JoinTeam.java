@@ -32,6 +32,16 @@ public class JoinTeam implements CommandExecutor {
                             if (i.equals(args[0])) {
                                 MCWar.config.set("teams." + i + ".member." + p.getUniqueId(), 0);
 
+                                if (MCWar.config.getConfigurationSection("teams." + i + ".member").getKeys(false).size() >= 3) {
+                                    p.sendMessage(ChatColor.RED + "팀 최대 인원은 3명입니다.");
+                                    return false;
+                                }
+
+                                if (MCWar.config.getConfigurationSection("final").getKeys(false).contains(p.getUniqueId())) {
+                                    p.sendMessage(ChatColor.RED + "팀의 신호기가 부서져 팀에 들어갈 수 없습니다.");
+                                    return false;
+                                }
+
                                 for (String j : MCWar.config.getConfigurationSection("teams." + i + ".member").getKeys(false)) {
                                     if (Bukkit.getPlayer(UUID.fromString(j)) != null) {
                                         Bukkit.getPlayer(UUID.fromString(j)).sendMessage(ChatColor.GREEN + p.getName() + "님이 팀에 합류했습니다.");
@@ -39,6 +49,7 @@ public class JoinTeam implements CommandExecutor {
                                         p.setDisplayName(p.getName() + " [" + i + "]");
                                         p.setCustomName(p.getName() + " [" + i + "]");
                                         MCWar.config.set("teams." + i + ".member." + p.getUniqueId(), 0);
+                                        MCWar.getPlugin(MCWar.class).saveConfig();
                                         return false;
                                     }
                                 }

@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Upgrade implements Listener {
@@ -38,10 +40,10 @@ public class Upgrade implements Listener {
             if (e.getView().getTitle().contains(ChatColor.GREEN + "아이템 강화")) {
                 if (e.getRawSlot() == 7) {
                     e.setCancelled(true);
-                    if (e.getClickedInventory().getItem(1) != null && e.getClickedInventory().getItem(2) != null && e.getClickedInventory().getItem(2).getType().name().endsWith("_SMITHING_TEMPLATE")) {
+                    if (e.getClickedInventory().getItem(1) != null && e.getClickedInventory().getItem(2) != null && Objects.requireNonNull(e.getClickedInventory().getItem(2).getItemMeta()).getDisplayName().equals(ChatColor.YELLOW + "강화된 청금석")) {
                         ItemStack item = e.getClickedInventory().getItem(1);
                         String itemName = item.getType().name();
-                        if (itemName.endsWith("_SWORD") || itemName.endsWith("_AXE") || itemName.equals("BOW") || itemName.equals("TRIDENT")) {
+                        if (itemName.endsWith("_SWORD") || itemName.endsWith("_AXE") || itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS") || itemName.equals("BOW") || itemName.equals("TRIDENT") || itemName.equals("CROSSBOW")) {
                             e.getClickedInventory().getItem(2).setAmount(e.getClickedInventory().getItem(2).getAmount() - 1);
 
                             if (item.getItemMeta() == null || item.getItemMeta().getLore() == null) {
@@ -52,6 +54,9 @@ public class Upgrade implements Listener {
                                     lore.add(ChatColor.YELLOW + "★☆☆☆☆");
                                     meta.setLore(lore);
                                     item.setItemMeta(meta);
+                                    if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                        item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,1);
+                                    }
                                     e.getClickedInventory().setItem(1, item);
                                     ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.ENTITY_PLAYER_LEVELUP, 100, 2);
                                 }
@@ -66,6 +71,9 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★★☆☆☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,2);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.ENTITY_PLAYER_LEVELUP, 100, 2);
                                     }
@@ -73,10 +81,10 @@ public class Upgrade implements Listener {
                                     else if (rdInt == 8) {
                                         ItemMeta meta = item.getItemMeta();
                                         meta.setLore(null);
-                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
-                                            meta.removeAttributeModifier(Attribute.GENERIC_MAX_HEALTH);
-                                        }
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.removeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.BLOCK_ANVIL_DESTROY, 100, 0.7F);
                                     }
@@ -92,6 +100,9 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★★★☆☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,3);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.ENTITY_PLAYER_LEVELUP, 100, 2);
                                     }
@@ -102,6 +113,10 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★☆☆☆☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.removeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL);
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,1);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.BLOCK_ANVIL_DESTROY, 100, 0.7F);
                                     }
@@ -122,6 +137,9 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★★★★☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,4);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.ENTITY_PLAYER_LEVELUP, 100, 2);
                                     }
@@ -132,6 +150,10 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★★☆☆☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.removeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL);
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,2);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.BLOCK_ANVIL_DESTROY, 100, 0.7F);
                                     }
@@ -162,6 +184,10 @@ public class Upgrade implements Listener {
                                         lore.add(ChatColor.YELLOW + "★★★☆☆");
                                         meta.setLore(lore);
                                         item.setItemMeta(meta);
+                                        if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith("_LEGGINGS") || itemName.endsWith("_BOOTS")) {
+                                            item.removeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL);
+                                            item.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,3);
+                                        }
                                         e.getClickedInventory().setItem(1, item);
                                         ((Player) e.getWhoClicked()).playSound(e.getWhoClicked(), Sound.BLOCK_ANVIL_DESTROY, 100, 0.7F);
                                     }

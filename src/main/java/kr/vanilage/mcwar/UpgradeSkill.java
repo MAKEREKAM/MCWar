@@ -21,23 +21,23 @@ public class UpgradeSkill implements Listener {
                 List<String> lore = p.getInventory().getItemInMainHand().getItemMeta().getLore();
 
                 if (lore.contains(ChatColor.YELLOW + "★☆☆☆☆")) {
-                    e.setDamage(e.getDamage() + 1);
+                    e.setDamage((e.isCritical()) ? e.getDamage() + 1.5 : e.getDamage() + 1);
                 }
 
                 if (lore.contains(ChatColor.YELLOW + "★★☆☆☆")) {
-                    e.setDamage(e.getDamage() + 2);
+                    e.setDamage((e.isCritical()) ? e.getDamage() + 3 : e.getDamage() + 2);
                 }
 
                 if (lore.contains(ChatColor.YELLOW + "★★★☆☆")) {
-                    e.setDamage(e.getDamage() + 3);
+                    e.setDamage((e.isCritical()) ? e.getDamage() + 4.5 : e.getDamage() + 3);
                 }
 
                 if (lore.contains(ChatColor.YELLOW + "★★★★☆")) {
-                    e.setDamage(e.getDamage() + 4);
+                    e.setDamage((e.isCritical()) ? e.getDamage() + 6 : e.getDamage() + 4);
                 }
 
                 if (lore.contains(ChatColor.YELLOW + "★★★★★")) {
-                    e.setDamage(e.getDamage() + 5);
+                    e.setDamage((e.isCritical()) ? e.getDamage() + 7.5 : e.getDamage() + 5);
                 }
             }
         }

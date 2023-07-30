@@ -47,7 +47,7 @@ public class BreakBeacon implements Listener {
                             for (String k : MCWar.config.getConfigurationSection("teams." + j + ".member").getKeys(false)) {
                                 if (p.getUniqueId().toString().equals(k)) {
                                     for (String l : MCWar.config.getConfigurationSection("teams." + team + ".member").getKeys(false)) {
-                                        MCWar.config.set("teams." + j + ".member." + l, 0);
+                                        MCWar.config.set("final." + l, 0);
                                         MCWar.getPlugin(MCWar.class).saveConfig();
                                     }
 

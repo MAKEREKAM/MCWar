@@ -42,6 +42,11 @@ public class InitTeam implements CommandExecutor {
                     return false;
                 }
 
+                if (MCWar.config.getConfigurationSection("final").getKeys(false).contains(p.getUniqueId())) {
+                    p.sendMessage(ChatColor.RED + "팀의 신호기가 부서져 팀을 만들 수 없습니다.");
+                    return false;
+                }
+
                 p.getLocation().getBlock().setType(Material.REINFORCED_DEEPSLATE);
                 MCWar.config.set("teams." + args[0] + ".leader", p.getUniqueId().toString());
                 MCWar.config.set("teams." + args[0] + ".member." + p.getUniqueId(), 0);
